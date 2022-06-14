@@ -30,7 +30,7 @@ exports.userVerify = (req, res) => {
 			  err.message || "An error occurred during verify user."
 		  });
 		else {
-			if(data) res.redirect('http://5.45.79.175');
+			if(data) res.redirect('https://simplerigs.netlify.app');
 			else {
 				res.status(500).send({
 					message:
@@ -95,11 +95,37 @@ exports.getQrcode = (req, res) => {
 };
 exports.qrcodeVerify = (req, res) => {
 	Simplerigs.qrcodeVerify(req.body, (err, data) => {
-		console.log(err);
 		if (err) {
 		  res.status(500).send({
 			message:
 			  err.message || "An error occurred during verify qr code."
+		  });
+		}
+		else res.send(data);
+	});
+};
+exports.requestForgotPassword = (req, res) => {
+	Simplerigs.requestForgotPassword(req.body.email, (err, data) => {
+		if (err) {
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during request forgotten password"
+		  });
+		}
+		else res.send(data);
+	});
+};
+exports.forgotPasswordChange = (req, res) => {
+	if (!req.body) {
+		res.status(400).send({
+		  message: "Content can not be empty!"
+		});
+	} 
+	Simplerigs.forgotPasswordChange(req.body, (err, data) => {
+		if (err) {
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during change password"
 		  });
 		}
 		else res.send(data);

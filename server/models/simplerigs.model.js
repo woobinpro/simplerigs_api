@@ -170,7 +170,6 @@ exports.getQrcode = (user_id, result) => {
 	});
 };
 exports.qrcodeVerify = (params, result) => {
-	console.log(params);
 	jsql.s('secret').t('users').w({id: params.user_id}).run((err, res, fields) => {
 		if (err || res.length == 0) {
 			result(err, false);
@@ -184,4 +183,38 @@ exports.qrcodeVerify = (params, result) => {
 			});
 		}else result(null, false);
 	});
+};
+exports.requestForgotPassword = (email, result) => {
+	jsql.s('id').t('users').w({email: email}).run((err, res, fields) => {
+		if (err || res.length == 0) result(err, false);
+		const token = crypto.randomBytes(32).toString("hex") + "&" + res[0].id;
+		jsql.i({user_id: res[0].id, password_token: token}).t('tokens').run((err, res, fields) => {
+			if(err) result(err, null);
+			sendEmail(email, "Forgot your password?", token);
+			result(null, true);
+		});
+	});
+};
+exports.forgotPasswordChange = (params, result) => {
+	var token_str = params.token;
+	const user_id = token_str.split("&")[1];
+	jsql
+		.s()
+		.t('tokens')
+		.w({user_id: user_id, password_token: token_str})
+		.run((err, res, fields) => {
+			if (err) result(err, null);
+			if (res.length > 0){
+				bcrypt.hash(params.password,10, function(err, hash) {
+					jsql
+						.u({password: hash})
+						.t('users')
+						.w({id: user_id})
+						.run((err, res, fields) => {
+							if(err) result(err, null);
+							result(null, true);
+						});
+				});
+			}else result({message: "token doesn't match"}, false);
+		});
 };

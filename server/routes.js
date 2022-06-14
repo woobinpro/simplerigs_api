@@ -10,5 +10,7 @@ module.exports = app => {
 	router.get("/getQrcode/:user_id", controllers.getQrcode);
 	router.post("/sendPhoneVerificationCode", controllers.sendPhoneVerificationCode);
 	router.post("/qrcodeVerify", controllers.qrcodeVerify);
+	router.post("/requestForgotPassword", controllers.requestForgotPassword);
+	router.post("/forgotPasswordChange", controllers.forgotPasswordChange);
 	app.use('/api', router);
 };
