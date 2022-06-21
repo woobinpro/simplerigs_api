@@ -1,0 +1,161 @@
+-- MariaDB dump 10.19  Distrib 10.7.3-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: simplerigs
+-- ------------------------------------------------------
+-- Server version	10.7.3-MariaDB-1:10.7.3+maria~focal
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `referral`
+--
+
+DROP TABLE IF EXISTS `referral`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `referral` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `referral_link` varchar(255) NOT NULL,
+  `click_count` int(11) NOT NULL DEFAULT 0,
+  `signup_accounts` text DEFAULT NULL,
+  `income_accounts` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `referral`
+--
+
+LOCK TABLES `referral` WRITE;
+/*!40000 ALTER TABLE `referral` DISABLE KEYS */;
+INSERT INTO `referral` VALUES
+(1,1,'jmhnnnakosqm',0,NULL,NULL),
+(2,41,'RULYMIDGCJOP',0,NULL,NULL),
+(3,42,'09832f6655d1dfcd1fec72e6c92b71d4637c6d254b5cc20d629428b2e71a3260',1,NULL,NULL),
+(4,43,'kjknqvpqtogl',6,NULL,NULL);
+/*!40000 ALTER TABLE `referral` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tokens`
+--
+
+DROP TABLE IF EXISTS `tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tokens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `password_token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tokens`
+--
+
+LOCK TABLES `tokens` WRITE;
+/*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
+INSERT INTO `tokens` VALUES
+(5,11,'95cb240a1b519f079a3997a5f58db69e2a6fc2abb3464a56ed34482dbcd9a3a4',NULL),
+(6,12,'7b5da0b38444ea010bf3c2e35dbca2ee9d9efa97cf82137fe1376a3d1a593577',NULL),
+(7,13,'9e9d04d94b58b8976e8bfa149b2046982c2372db972f91b83c7cf90e8e9c0724',NULL),
+(8,14,'8b4d9e82a4307f25b23ecffa1822313f5882f881338d752f2d33f9ca798c5597',NULL),
+(9,15,'847a3138e06d015a59de35286a9fbcaca3a23a64365fd965744a40ffa9975f43',NULL),
+(10,16,'b6abe9f46cb78320e423fae7991ae552aa33e687145df3ee0a487d08882c8574',NULL),
+(11,17,'0de97f43204b654f6be446ec721e57630bc728de060b88eb265dc7ec365e70ad',NULL),
+(12,18,'467cf202b58b6f75ed5b8732b825148c77d699a58fc34d0cbf687d47207cf0ce',NULL),
+(13,19,'655dbf7ca1e7c7536e0b738f13d7f5901dacff17e4821178e5c7e01e5f803e92',NULL),
+(14,20,'c53c85bcd98b2420e306750c6e3d1b0e07c131d234c369be6604cb0fef248df6',NULL),
+(15,21,'6412bcda0670554934f678aec1eee8a8329ffce6000f75aefc2d1272e443d392',NULL),
+(16,22,'1807735c1c4b852c362d9c00254cd6b75c77d1c6cb4fb15636593a54ce447185',NULL),
+(17,23,'51c770c96db643c8cfd7303403586ca5b680e5ea2bb6ce7c35799738944f54c8',NULL),
+(18,24,'c9005bbf114030aa5649fcb5cc36e13d89c8fa232f586ceb7e0aa431a3c4793d',NULL),
+(19,1,NULL,'08bb7a2c59a6d1adf566e74564107653b84f7323e0a6893b50ae68ac5ba86c73&1'),
+(20,25,'f927f0742ee3a7dea79678290996a47d5c09c2f2af51fed60ab41249f2024417',NULL),
+(21,26,'1e7374b3d046878f39128f5ed7817e2123e89fb3e94dbd707dc76570bc379af5',NULL),
+(22,27,'db716f78c2b2ad341808ee6b5113467f47d7631d1dbe1b5f3685dc55e0895d06',NULL),
+(23,28,'af7538c2c2a1bae0f54194f7dae9ceabdc1ffd7a3a721cf2f5a040a0642905ba',NULL),
+(24,29,'26aa69091debcb3e02be15cef967c418ec449adab6d1f786339b592407be7c15',NULL),
+(25,30,'095b569a7ac3945190093c7b5c5b2c9c9d174359e99f69a28064a88de41133af',NULL),
+(26,31,'bc3b6c91e099dd1f7e89d280a2f4206ecfbbd4eb3152213d71fd2428e21ccffb',NULL),
+(27,32,'739940fa3ff31d20363a72646eed2d89471465be59b44918fb8644eba7a3bdd1',NULL),
+(28,33,'862598902610652d6af49e3f5c39262f9473634243cd683c32d627511af965c2',NULL),
+(29,34,'33f771218c64113fe9e2f467aa580be1ed3a85dd49f18ea660834a54f6e931bc',NULL),
+(30,35,'ad3a2b6b0e2dba050a7cc2cde1ea47eca51ee2416e70d508f19f781431917964',NULL),
+(31,36,'36ad58f7cc461c2f54d5e63771e6e4120250d83024f9e476c7c358bc90519b03',NULL),
+(32,37,'f04f2a19a0c558a51dfec3dafc3d6b39f2a2a66798cdd064166e9ec33d5f3eca',NULL),
+(33,38,'87b5c7f566658dc71fcd0ec07f775265ccb367968c3f60cdc93f55b5f616fd5d',NULL),
+(34,39,'156902d55a375ee2102575112e0a5947b73bce183f40430e84daf8fd86db85a5',NULL),
+(35,40,'f64c3d87616d2a3c87df444838f56860408d7f6dc710ff6b59e67e72d53d3b5d',NULL),
+(36,41,'9f6c98aa6f9d3ef5e0dd82423be6052e8f3362e4ecfb7997e0d2c88c1e23071a',NULL),
+(37,42,'cc8ef008e83304abb8bc6f98ed2cdc80aef2a2808020446991cd3b30d1d99c1f',NULL),
+(38,43,'6f84f13bd645deab62778cfcf4ba24504a4dee5e22ac324cb0f148b3134c3a8f',NULL),
+(39,1,NULL,'2fc0875cfb7f376f0a1d27b892643d2ccd3234a61918a2fbb8a7cd1a2d3e96c3&1'),
+(40,1,NULL,'676cf29d73c23b65d6979808731fca74cc11bb5fbc4bc3cf03795f9f1d114271&1'),
+(41,1,NULL,'5e8757e099be191cf550464dceb499a22e0cf18f1125c9a3b584841b65527714&1'),
+(42,1,NULL,'ca72401be0fdc6c9f6e6de8dd0fe75004ed3b2b511877ea29b67a9c055920c2b&1'),
+(43,43,NULL,'027e7c8710e2494051ea91b262ba876cb156f7ad552e10c312ca7641a77f4dd7&43');
+/*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `wallet_address` varchar(100) NOT NULL,
+  `login_datetime` datetime NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT 1,
+  `two_factor_verified` tinyint(4) NOT NULL DEFAULT 0,
+  `secret` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES
+(1,'woo','bin','woobinpro@gmail.com','+15733174257','$2b$10$eXfJ9Mfk95DAMY8J1zW3CurNKYUPBsc7w1TCPZGuuO0hIazYvo.ZW','3JMs8p2UUu7cu5sCfeqV82cjGxcE8xDPDA','2022-05-11 21:14:55',1,1,'OJRUIQJ4L5YVU2IP'),
+(41,'huba','mykyta','patrykpietrasfree@gmail.com','+15733174257','$2b$10$jeoIg78oEHIK2nQphDR2w.Tf9CKby8tTv0X4ng.Z.NiZXVD0ezok2','','2022-06-14 23:25:12',0,0,''),
+(42,'Christian','Ramos','superdev729@gmail.com','15613166153','$2b$10$7SXe1t.D3o7bsyJ/CfaXCuMwoA6Nl8.R6GrOqbNigts9lYyb6SAHO','','2022-06-15 00:48:30',0,0,''),
+(43,'Christian','Ramos','christianramosfree@gmail.com','15613166153','$2b$10$RBlo.2obwZTaWMtTw4g8buuedJxw8Q81/wcZ2XQP1TGy6i0uUH7E6','33YqPcaJdW3EqtHVfry8dgANm1Fo9BUQ5N','2022-06-15 00:58:52',1,0,'EEJV45AXHNNBIVIF');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-06-20 19:51:56

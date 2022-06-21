@@ -53,14 +53,22 @@ exports.userLogin = (req, res) => {
 					message:
 						err.message || "Not verifed"
 				});
-			}else {
+			}else if (err.type == "authorization error"){
+				res.status(500).send({
+					message: err.message || "Email or Password isn't correct. Try again."
+				});
+			}
+			else {
 				res.status(500).send({
 					message:
 					  err.message || "An error occurred during user login."
 				  });
 			}
 		}
-		else res.send(data);
+		else {
+			console.log(data);
+			res.send(data);
+		}
 	});
 };
 exports.getWalletAddress = (req, res) => {
@@ -83,6 +91,46 @@ exports.sendPhoneVerificationCode = (req, res) => {
 		else res.send(data);
 	});
 };
+exports.getUserInfo = (req, res) => {
+	Simplerigs.getUserInfo(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get user info."
+		  });
+		else res.send(data);
+	});
+};
+exports.getReferralCode = (req, res) => {
+	Simplerigs.getReferralCode(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get referral code."
+		  });
+		else res.send(data);
+	});
+};
+exports.getReferralInfo = (req, res) => {
+	Simplerigs.getReferralInfo(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get referral info."
+		  });
+		else res.send(data);
+	});
+};
+exports.setReferralClick = (req, res) => {
+	Simplerigs.setReferralClick(req.body.referral_code, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during set referral click."
+		  });
+		else res.send(data);
+	});
+};
 exports.getQrcode = (req, res) => {
 	Simplerigs.getQrcode(req.params.user_id, (err, data) => {
 		if (err)
@@ -90,7 +138,7 @@ exports.getQrcode = (req, res) => {
 			message:
 			  err.message || "An error occurred during get qr code."
 		  });
-		else res.send("<img src='"+ data + "'/>");
+		else res.send(data);
 	});
 };
 exports.qrcodeVerify = (req, res) => {

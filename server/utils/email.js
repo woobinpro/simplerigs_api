@@ -9,7 +9,7 @@ myOAuth2Client.setCredentials({
   refresh_token: process.env.REFRESH_TOKEN
 });
 const myAccessToken = myOAuth2Client.getAccessToken()
-const sendEmail = async (email, subject, text) => {
+const sendEmail = async (email, subject, text, htmlToSend) => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -24,13 +24,13 @@ const sendEmail = async (email, subject, text) => {
     });
     transporter.verify((err, success) => {
       if (err) console.error(err);
-      console.log('Your config is correct');
     });
     await transporter.sendMail({
       from: process.env.SENDER,
       to: email,
       subject: subject,
       text: text,
+      html: htmlToSend
     });
     console.log("email sent sucessfully");
   } catch (error) {
