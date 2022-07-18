@@ -30,7 +30,7 @@ exports.userVerify = (req, res) => {
 			  err.message || "An error occurred during verify user."
 		  });
 		else {
-			if(data) res.redirect('https://simplerigs.netlify.app');
+			if(data) res.redirect('https://simplerigs.com?verify=true');
 			else {
 				res.status(500).send({
 					message:
@@ -69,6 +69,16 @@ exports.userLogin = (req, res) => {
 			console.log(data);
 			res.send(data);
 		}
+	});
+};
+exports.sendEmailVerificationLink = (req, res) => {
+	Simplerigs.sendEmailVerificationLink(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during send email verification link."
+		  });
+		else res.send(data);
 	});
 };
 exports.getWalletAddress = (req, res) => {
@@ -179,3 +189,113 @@ exports.forgotPasswordChange = (req, res) => {
 		else res.send(data);
 	});
 };
+exports.getBitcoinValue = (req, res) => {
+	Simplerigs.getBitcoinValue(req.params.amount, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get bitcoin value."
+		  });
+		else res.send(data);
+	});
+};
+exports.getPlanList = (req, res) => {
+	Simplerigs.getPlanList(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get plan list."
+		  });
+		else res.send(data);
+	});
+};
+exports.requestWithdraw = (req, res) => {
+	Simplerigs.requestWithdraw(req.body, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during withdraw."
+		  });
+		else res.send(data);
+	});
+};
+exports.getWithdrawBalance = (req, res) => {
+	Simplerigs.getWithdrawBalance(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get withdraw balance."
+		  });
+		else res.send(data);
+	});
+};
+exports.payoutInfo = (req, res) => {
+	Simplerigs.payoutInfo(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get payout info."
+		  });
+		else res.send(data);
+	});
+};
+exports.revenueInfo = (req, res) => {
+	Simplerigs.revenueInfo(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get revenue info."
+		  });
+		else res.send(data);
+	});
+};
+exports.getBtcPrice = (req, res) => {
+	Simplerigs.getBtcPrice((err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get Bitcoin Price."
+		  });
+		else res.send(data);
+	});
+};
+exports.getWithdrawTransaction = (req, res) => {
+	Simplerigs.getWithdrawTransaction(req.params.user_id, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get withdraw transaction."
+		  });
+		else res.send(data);
+	});
+};
+exports.getTodayInvestors = (req, res) => {
+	Simplerigs.getTodayInvestors((err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during get joined investors on today."
+		  });
+		else res.send(data);
+	});
+};
+exports.uploadID = (req, res) => {
+	Simplerigs.uploadID(req, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during upload ID."
+		  });
+		else res.send(data);
+	});
+};
+exports.setTwoFAuth = (req, res) => {
+	Simplerigs.setTwoFAuth(req.body, (err, data) => {
+		if (err)
+		  res.status(500).send({
+			message:
+			  err.message || "An error occurred during set 2fa authorization."
+		  });
+		else res.send(data);
+	});
+}

@@ -11,16 +11,26 @@ myOAuth2Client.setCredentials({
 const myAccessToken = myOAuth2Client.getAccessToken()
 const sendEmail = async (email, subject, text, htmlToSend) => {
   try {
+    // const transporter = nodemailer.createTransport({
+    //   service: 'gmail',
+    //   auth: {
+    //     type: "OAuth2",
+    //     user: process.env.SENDER,
+    //     clientId: process.env.CLIENT_ID,
+    //     clientSecret: process.env.CLIENT_SECRET,
+    //     refreshToken: process.env.REFRESH_TOKEN,
+    //     accessToken: myAccessToken //access token variable we defined earlier
+    //   },
+    // });
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'mail.privateemail.com',
+      port: 465,
+
+tls: { rejectUnauthorized: false},
       auth: {
-        type: "OAuth2",
         user: process.env.SENDER,
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        refreshToken: process.env.REFRESH_TOKEN,
-        accessToken: myAccessToken //access token variable we defined earlier
-      },
+        pass: process.env.SENDER_PASSWORD
+      }
     });
     transporter.verify((err, success) => {
       if (err) console.error(err);
